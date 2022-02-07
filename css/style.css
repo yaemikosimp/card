@@ -1,0 +1,294 @@
+/* задаем стиль всем элементам через * (звездочку) */
+* {
+    font-family: Verdana;
+}
+
+/* задем стиль для класс content */
+.content {
+    /* задаем абслолютную позицию
+        https://developer.mozilla.org/ru/docs/Web/CSS/position - здесь можно изучить параметр position */
+    position: absolute;
+    /* указываем расположение по горизонтали от левого края экрана */
+    left: 0;
+    /* указываем расположение по вертикали от верхнего края экрана */
+    top: 0;
+    /* ширина блока булет равна всей ширине экрана */
+    width: 100%;
+    /* высота блока булет равна всей высоте экрана */
+    height: 100%;
+    /* граница имеет толщину 0 пикселей - сплошная линия - красного цвета */
+    border: 0px solid red;
+    /* блок должен учитывать любые границы и внутренние отступы в значениях, которые вы указываете в ширине и высоте блока
+        https://developer.mozilla.org/ru/docs/Web/CSS/box-sizing - здесь можно изучить параметр box-sizing */
+    box-sizing: border-box;
+    /* указываем путь до изображения, которое будет фоном */
+    background-image: url('https://w-dog.ru/wallpapers/16/12/371080670788186.jpg');
+    /* указываем, что изображение долно покрывать весь экран */
+    background-size: cover;
+    /* фоновое изображение должно стоять по центру */
+    background-position: center;
+    /* превращаем блочный элемент в гибкий контейнер */
+    display: flex;
+    /* выравниваем элементы по горизонтали */
+    justify-content: center;
+    /* выравниваем элементы по вертикали */
+    align-items: center;
+}
+
+/* можно задавать одинаковые стили для классов и идентификаторов с разными именами */
+#header, #footer {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    /* задаем внутренний отступ */
+    padding: 48px;
+    box-sizing: border-box;
+    /* выравниваем текст по центру */
+    text-align: center;
+    /* задаем цвет для текста */
+    color: white;
+    /* задаем шрифт для текста */
+    font-family: Verdana;
+    /* изменяем стиль текста, значение italic - курсив */
+    font-style: normal;
+    /* задаем вес тексту */
+    font-weight: normal;
+}
+
+#header {
+    top: 0;
+    /* задаем размер тексту */
+    font-size: 24px;
+    /* задаем фону градиентный цвет */
+    background: linear-gradient(180deg, rgba(248, 248, 248, 0.2) 0%, rgba(248, 248, 248, 0) 100%);
+}
+
+#footer {
+    bottom: 0;
+    font-size: 20px;
+    background: linear-gradient(180deg, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 0.2) 100%);
+}
+
+/* занятие 4 начало */
+.card {
+    width: 480px;
+    height: 680px;
+    border: 0px solid red;
+    /*  даем относительное позиционирование,
+        то есть координаты для данного блока будут считываться с его верхнего левого угла, а не всего окна браузера */
+    position: relative;
+    box-sizing: border-box;
+    perspective: 1000px;
+    z-index: 100;
+}
+
+.card__front, .card__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    /* выравниваем элементы по вертикали */
+    align-items: center;
+    /* выравниваем элементы по горизонтали */
+    justify-content: center;
+    /* добавляем эффект тени (свечения) */
+    filter: drop-shadow(8px 8px 32px rgba(255, 255, 255, 0.25)) drop-shadow(-8px 8px 32px rgba(255, 255, 255, 0.25));
+    /* задняя сторона элемента скрывается, то есть при переворачивании объекта - его задняя сторона не будет видна */
+    backface-visibility: hidden;
+    /* время на именение свойств */
+    transition: 1s;
+    box-sizing: border-box;
+}
+
+.card__back {
+    /* переворачиваем объект по оси Y */
+    transform: rotateY(180deg);
+}
+
+.card__poster {
+    position: relative;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.card__poster img {
+    width: 100%;
+    height: 480px;
+    /* заполняет контейнер изображением, не искажая изображение */
+    object-fit: cover;
+    box-sizing: border-box;
+    /*  закругляем углы:
+        первое значение для верхнего левого, второе - для правого верхнего и дальше по часовой. */
+    border-radius: 24px 24px 0px 0px;
+}
+
+.card__title {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 50%;
+    /* превращаем блок в гибкий контейнер */
+    display: flex;
+    /* элементы будут выравниваться по нижнему краю */
+    align-items: flex-end;
+    justify-content: center;
+    padding: 24px;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    box-sizing: border-box;
+    /* фоновый цвет задан градиентом */
+    background: linear-gradient(180deg, rgba(20, 20, 20, 0) 0%, #141414 100%);
+}
+
+.card__item {
+    background: #141414;
+    /*  закругляем углы:
+        первое значение для верхнего левого, второе - для правого верхнего и дальше по часовой. */
+    border-radius: 0px 0px 24px 24px;
+    /*  внутренний отступ:
+        первое значение для верхней и нижней сторон, второе - для левой и правой. */
+    padding: 0px 48px;
+    height: 200px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex: auto;
+}
+
+.card__btn_yes {
+    background: #FF6600;
+    border-radius: 12px;
+    color: white;
+    width: 100%;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    /*  выравнивание текста по горизонтали */
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.card__desc {
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    padding-bottom: 20px;
+}
+
+.card__btn_no {
+    color: #555555;
+    width: 100%;
+    /*  внутренний отступ:
+        первое значение для верхней, второе - правой сторон, третье - для нижней, и четвортое - для левой. */
+    padding: 20px 30px 30px 30px;
+    box-sizing: border-box;
+    text-align: center;
+    /*  добавляем нижнее подчеркивание */
+    text-decoration: underline;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.card__lubus {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: white;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*  указываем направление расположения объектов внутри гибкого контейнера
+        column - по вертикали
+        row - по горизонтали */
+    flex-direction: column;
+}
+
+.card__lubus img {
+    padding: 36px;
+}
+
+.card__lubus_text {
+    font-size: 32px;
+    color: #222;
+}
+
+.card__btn_again {
+    font-size: 24px;
+    text-decoration: underline;
+    color: #C84117;
+    cursor: pointer;
+}
+
+/* занятие 6 */
+
+.card__panel {
+    width: 100px;
+    height: 680px;
+    display: flex;
+    flex-direction: column;
+    /* расположение объектов начинается с начала блока  */
+    align-items: flex-start;
+    /* располагаем объекты таким образом, чтобы они были на однаковом расстоянии друг от друга */
+    justify-content: space-between;
+    /* внешний отступ с левой стороны */
+    margin-left: -100px;
+    z-index: 99;
+    transition: 0.5s;
+}
+
+.card__panel_ball {
+    width: 100%;
+    height: 420px;
+    background: #141414;
+    border-radius: 24px;
+    display: flex;
+    /* расположение объектов начинается с конца блока  */
+    align-items: flex-end;
+    filter: drop-shadow(-8px 8px 32px rgba(255, 255, 255, 0.25)) drop-shadow(8px 8px 32px rgba(255, 255, 255, 0.25));
+}
+
+.card__panel_value {
+    width: 100%;
+    height: 82%;
+    border-radius: 0px 0px 24px 24px;
+    background: #FF6600;
+    color: white;
+    font-weight: bold;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card__panel_value div {
+    /* поворазчиваем объект на -90 градусов нра плоскости  */
+    transform: rotate(-90deg);
+}
+
+.card__panel_info,
+.card__panel_play {
+    width: 100px;
+    height: 100px;
+    background: #141414;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(-8px 8px 32px rgba(255, 255, 255, 0.25)) drop-shadow(8px 8px 32px rgba(255, 255, 255, 0.25));
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.card__panel_info:hover,
+.card__panel_play:hover {
+    background: #363232;
+}
